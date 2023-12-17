@@ -62,3 +62,12 @@ exports.postUsers = async (req, res, next) => {
       return res.status(500).json({error: "An error occurred"});
     }
   };
+
+  exports.getAllUsers = async (req, res, next) => {
+    try{
+      const user = await User.findAll();
+      res.status(200).json(users);
+    }catch(err){
+      res.status(500).json({err: "server error"});
+    }
+  };
