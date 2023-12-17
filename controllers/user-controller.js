@@ -2,10 +2,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
+const sequelize = require("../util/database")
 
 exports.postUsers = async (req, res, next) => {
     const name = req.body.name;
-    const phoneno = req.body.phoneno;
+    const phone = req.body.phone;
     const email = req.body.email;
     const password = req.body.password;
     console.log(name, email, password);
@@ -15,7 +16,7 @@ exports.postUsers = async (req, res, next) => {
       const newUser = await User.create(
         {
           name: name,
-          phoneno: phoneno,
+          phone: phone,
           email: email,
           password: hashedPassword,
           totalExpense: 0,
@@ -31,5 +32,33 @@ exports.postUsers = async (req, res, next) => {
       return res
         .status(409)
         .json({ error: "User with this email already exists" });
+    }
+  };
+
+
+  exports.getUser = async (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log(email,password);
+    try{
+      const user = await user.findOne({where: {email}});
+      if(!user){
+        return res.status(404).json({error: "User not found", success: faise})
+      }
+      const passwordMatched = await bcrypt.compare(password,user.password);
+      if(!passwordMatched){
+        return res.status(401).json({error:"Icorrect password",sucess: false});
+
+      }else{
+        const token = jwt.sign(user.id, secretkey);
+        return res.status(200).json({
+          message:"User logged in successfully",
+          success: true,
+          token: token
+        })
+      }
+    }catch(err){
+      console.error(err):
+      return res.status(500).json({error: "An error occurred"});
     }
   };
