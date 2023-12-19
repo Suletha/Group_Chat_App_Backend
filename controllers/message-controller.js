@@ -12,6 +12,7 @@ exports.postmsg = async (req, res, next) => {
       userId: req.user.id,
     });
     const responseMsg = {
+      id: newMsg.id,
       name: req.user.name,
       msg: newMsg.msg,
       createdAt: newMsg.createdAt,
@@ -25,12 +26,14 @@ exports.postmsg = async (req, res, next) => {
 
 exports.getAllMsgs = async (req, res, next) => {
   try {
-    //Get the last msg id from the query parameters
-    const lastMessageId = req.query.lastMessageId;
-    //Condition to retrive msg with id >= lastMessageId (Defining a filter)
-    const whereCondition = lastMessageId ? {id: {[Sequelize.Op.gte]: lastMessageId}} : {};
+    const lastMessageId = req.query.lastMessageId; // Get the lastMessageId from the query parameters
+    // Define a filter condition to retrieve messages with an ID greater than or equal to lastMessageId
+    const whereCondition = lastMessageId
+      ? { id: { [Sequelize.Op.gte]: lastMessageId } }
+      : {};
+
     const messages = await Msg.findAll({
-      where: whereCondition, //filter condition
+      where: whereCondition, // Apply the filter condition
       include: {
         model: User,
       },
@@ -43,6 +46,8 @@ exports.getAllMsgs = async (req, res, next) => {
       msg: message.msg,
       createdAt: message.createdAt,
     }));
+
+    //console.log(formattedMessages);
 
     res.status(200).json(formattedMessages);
   } catch (err) {
