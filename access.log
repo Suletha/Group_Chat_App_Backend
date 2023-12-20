@@ -244,3 +244,7 @@
 ::1 - - [20/Dec/2023:05:26:26 +0000] "GET /groups/1/msgs?lastMessageId=2 HTTP/1.1" 304 - "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 ::1 - - [20/Dec/2023:05:26:27 +0000] "GET /groups/1/msgs?lastMessageId=2 HTTP/1.1" 304 - "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 ::1 - - [20/Dec/2023:05:26:30 +0000] "GET /groups/1/msgs?lastMessageId=2 HTTP/1.1" 304 - "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [20/Dec/2023:12:07:28 +0000] "POST /users/logIn HTTP/1.1" 200 134 "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [20/Dec/2023:12:07:28 +0000] "GET /groups/all HTTP/1.1" 200 324 "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [20/Dec/2023:12:07:33 +0000] "GET /groups/1/users HTTP/1.1" 200 116 "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [20/Dec/2023:12:07:48 +0000] "POST /groups/1/msgs HTTP/1.1" 201 83 "http://127.0.0.1:5501/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

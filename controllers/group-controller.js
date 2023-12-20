@@ -137,42 +137,6 @@ exports.getGroups = async (req, res, next) => {
   }
 };
 
-// exports.getAllMsgs = async (req, res, next) => {
-//   try {
-//     const groupId = req.params.id;
-//     const lastMessageId = req.query.lastMessageId; // Get the lastMessageId from the query parameters
-//     const messages = await Msg.findAll({
-//       attributes: ["id", "msg", "createdAt"], // Select only the desired columns
-//       include: [
-//         {
-//           model: User,
-//           attributes: ["name"], // Include the username
-//         },
-//       ],
-//       where: {
-//         groupId: groupId,
-//         id: { [Sequelize.Op.gte]: lastMessageId }, // Filter messages by ID
-//       },
-//       order: [["createdAt"]], // Order by createdAt in descending order
-//     });
-
-//     // Format the response
-//     const formattedMessages = messages.map((message) => ({
-//       id: message.id,
-//       name: message.user.name,
-//       msg: message.msg,
-//       createdAt: message.createdAt,
-//     }));
-
-//     //console.log(formattedMessages);
-
-//     res.status(200).json(formattedMessages);
-//   } catch (err) {
-//     console.error(err);
-//     return res.status(500).json({ error: "Some error occurred" });
-//   }
-// };
-
 exports.postmsg = async (req, res, next) => {
   const userId = req.user.id;
   const groupId = req.params.id;
