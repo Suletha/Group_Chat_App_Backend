@@ -217,12 +217,12 @@ exports.makeadmin = async (req, res, next) => {
   next();
 };
 
-exports.postmedia =async(req, res, next) => {
+exports.postmedia = async (req, res, next) => {
   try {
     const file = req.files.media;
 
     if (!file) {
-      return res.status(400).json({ error: "No files are uploded"})
+      return res.status(400).json({ error: "No file was uploaded." });
     }
     const BUCKET_NAME = process.env.BUCKET_NAME;
     const IAM_USER_KEY = process.env.IAM_USER_KEY;
@@ -232,7 +232,9 @@ exports.postmedia =async(req, res, next) => {
       accessKeyId: IAM_USER_KEY,
       secretAccessKey: IAM_USER_SECRET,
     });
-    const fileKey =  `uploads/${uuidv4()}_${file.name}`;
+
+    const fileKey = `uploads/${uuidv4()}_${file.name}`;
+
     const params = {
       Bucket: BUCKET_NAME,
       Key: fileKey,
@@ -253,34 +255,4 @@ exports.postmedia =async(req, res, next) => {
       .status(500)
       .json({ error: "An error occurred while uploading the file to S3." });
   }
-  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
